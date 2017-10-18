@@ -33,6 +33,7 @@ app.get('/todos',(req,res)=>{
 });
 
 app.get('/todos/:id',(req,res)=>{
+    //get the id
     var id = req.params.id;
 
     // Valid id using isValid
@@ -57,6 +58,35 @@ app.get('/todos/:id',(req,res)=>{
         res.status(400).send(e);
     });
 });
+
+app.delete('/todos/:id',(req,res)=>{
+    //get the id
+    var id = req.params.id;
+
+    // validate the id -> not valid ? return 404
+    if(!ObjectID.isValid(id)){
+        //404 - send back empty sent
+        return res.status(404).send();
+    };
+
+    //remove todo by id
+    Todo.findByIdAndRemove(id).then(
+        //succes
+        (todo)=>{
+            //if no doc, send 404
+            if(!todo){
+                return res.status(404).send();
+            }
+            //if doc send doc with 200
+            res.status(200).send({todo});
+        },
+        // error
+        (e) => {
+            //400 with empty body
+            res.status(400).send(e);
+    });
+});
+
 
 
 app.listen(port,() => {
