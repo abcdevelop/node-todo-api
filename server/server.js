@@ -1,4 +1,3 @@
-const expect = require('expect');
 const express = require('express');
 const bodyParser = require('body-parser');
 const {ObjectID} = require('mongodb');
