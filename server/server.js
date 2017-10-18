@@ -2,8 +2,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 var {mongoose} = require('./db/mongoose');
-var {Todo} = require('./model/todo');
-var {User} = require('./model/user');
+var {Todo} = require('./models/todo');
+var {User} = require('./models/user');
 
 var app = express();
 
@@ -55,3 +55,4 @@ app.listen(3000,() => {
 // });
 
 
+module.exports={app};
