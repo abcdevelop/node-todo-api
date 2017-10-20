@@ -1,16 +1,36 @@
-const {SHA256} = require('crypto-js');
-const jwt = require('jsonwebtoken');
+// const {SHA256} = require('crypto-js');
+// const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
-var data = {
-  id: 10
-};
-var secret='123abc';
+var password='123abc!';
 
-var token=jwt.sign(data,secret);
-console.log('token:',token);
+// bcrypt.genSalt(10,(err,salt)=>{
+//   bcrypt.hash(password,salt,(err,hash)=>{
+//     console.log(hash);
+//   });
+// });
 
-var decoded=jwt.verify(token,secret);
-console.log('decoded:',decoded)
+//var hashedPassword='$2a$10$X0oKvhyQKGJZwJeXqie7de/A26GywZxbTmrcMXKGATkagxd2ozrPK';
+// var hashedPassword='$2a$10$JwqsC/slGrcb7oSf9wHHBucOPMWcADKghjT3fp2UjGdtH4rlyUEN.';
+ var hashedPassword='$2a$10$OZRKercu8.JqzzD4y.MRTetT40LIf8GN4RdP33Ss81ZwE.bTzjOaq';
+
+
+bcrypt.compare(password,hashedPassword,(err,res)=>{
+  console.log(res);
+});
+
+// var data = {
+//   id: 10
+// };
+// var secret='123abc';
+//
+// var token=jwt.sign(data,secret);
+// console.log('token:',token);
+//
+// var decoded=jwt.verify(token,secret);
+// console.log('decoded:',decoded)
+
+
 
 // var message = 'I am user number 3';
 // var hash = SHA256(message).toString();
